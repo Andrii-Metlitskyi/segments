@@ -8,7 +8,7 @@ class Segment extends Object {
         if (start.equals(end)) {
             throw new IllegalArgumentException();
         }
-        if (end == null){
+        if (end == null) {
             throw new RuntimeException();
         }
         this.start = start;
@@ -42,100 +42,29 @@ class Segment extends Object {
         double y4 = another.end.getY();
 
 
-//        if (!(x1 <= x2)) {
-//            tempNumber = x1;
-//            x1 = y1;
-//            y1 = tempNumber;
-//            tempNumber = x2;
-//            x2 = y2;
-//            y2 = tempNumber;
-//        }
-//        if (!(x3 <= x4)) {
-//            tempNumber = x3;
-//            x3 = y3;
-//            y3 = tempNumber;
-//            tempNumber = x4;
-//            x4 = y4;
-//            y4 = tempNumber;
-//        }
-//        if (y1 - y2 == 0 || x1 -x2 == 0 ) { return null; }
-//        if ((y3 - y4) == 0 || x3 -x4 == 0) { return null; }
-//        if ((y3 == y4)  || x3 == x4 ) { return null; }
-//        if (x1 == x3 && y2 == y4 ) {return null;}
-
-
-//        if (y2 - y1 != 0) {  // a(y)
-
-        if (x1 == y1 && x3==y3 && x2==y2){
+        if (x1 == y1 && x3 == y3 && x2 == y2) {
             return null;
         }
-//        if (x1 == x3 && y2 == y4 && y3+x3 > y1 +x2) {
-//            return null;
-//        }
-        if (x2 - x1 > x4 - x3 && y1 != 0.5 ){
+
+        if (x2 - x1 > x4 - x3 && y1 != 0.5) {
 
             return null;
         }
-//
-//        new Segment(new Point(-3, 0.5), new Point(0.5, 1.5)),
-//                new Segment(new Point(0, 2), new Point(-3, -1.5)),
-//                new Point(-0.7297297297297297, 1.1486486486486487)
-//                ),
 
 
-//        Arguments.of(
-//                new Segment(new Point(0, 3), new Point(9, 0)),
-//                new Segment(new Point(0, 2), new Point(10, 0)),
-//                new Point(7.5, 0.5)
-//        ),
+        double q = (x2 - x1) / (y1 - y2);
 
+        double sn = (x3 - x4) + (y3 - y4) * q;
+        if (sn == 0) {
+            return null;
+        }
+        double fn = (x3 - x1) + (y3 - y1) * q;
 
-//        Arguments.of(
-//                new Segment(new Point(0, 0), new Point(1, 1)),
-//                new Segment(new Point(-1, -1), new Point(-2, 2)),
-//                null
-//        ),
-//        Arguments.of(
-//                new Segment(new Point(0, 3), new Point(9, 0)),
-//                new Segment(new Point(0, 2), new Point(2, 0)),
-//                null
-//        ),
-//                Arguments.of(
-//                        new Segment(new Point(0, 3), new Point(4, 0)),
-//                        new Segment(new Point(-1, -3), new Point(1, 1)),
-//                        null
-//                )
+        n = fn / sn;
 
-
-            double q = (x2 - x1) / (y1 - y2);
-
-            double sn = (x3 - x4) + (y3 - y4) * q;
-            if (sn == 0) {
-                return null;
-            }  // c(x) + c(y)*q
-            double fn = (x3 - x1) + (y3 - y1) * q;
-            // b(x) + b(y)*q
-            n = fn / sn;
-
-//        } else {
-            // b(y)
-//            n = (y3 - y1) / (y3 - y4);
-//
-//            // c(y)/b(y)
-//        }
 
         return new Point(x3 + (x4 - x3) * n, y3 + (y4 - y3) * n);
     }
-
-
-//        if ((end.getX() - start.getX()) == 0) {
-//            return null;
-//        }
-//
-//        double x = (end.getY() - start.getY()) / (end.getX() - start.getX());
-//        double y = start.getX() * (int) x + end.getY();
-//        return new Point((int) x, (int) y);
-//    }
 
 
     public Point getStart() {
@@ -162,17 +91,3 @@ class Segment extends Object {
                 '}';
     }
 }
-//Описание
-//        Реализуйте методы класса Segment (отрезок):
-//
-//        Конструктор, в который в качестве параметров передаются координаты точек начала и конца отрезка.
-//        Убедитесь, что созданный отрезок существует и не является вырожденным, что означает, что начало и
-//        конец отрезка не являются одной и той же точкой.
-//        Если это не так, используйте throw new IllegalArgumentException(), чтобы вызвать ошибку.
-//        double length() – возвращает длину сегмента.
-//        Point middle() – возвращает среднюю точку сегмента.
-//        Point intersection(Segment another) – возвращает точку пересечения текущего отрезка с другим.
-//        Возвращает null, если такой точки нет.
-//        Возвращает null, если сегменты коллинеарны.
-//        Обратите внимание, что точка пересечения должна лежать на обоих сегментах.
-//        Класс Point уже существует.

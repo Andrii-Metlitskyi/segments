@@ -1,7 +1,5 @@
 package com.epam.rd.autotasks.segments;
 
-import java.util.Objects;
-
 class Point {
     public final double x, y;
 
